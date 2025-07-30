@@ -156,3 +156,5 @@ CACHES = {
         'LOCATION': 'redis://redis:6379/1',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ['http://130.193.44.74']
