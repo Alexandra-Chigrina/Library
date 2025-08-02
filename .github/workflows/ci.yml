@@ -45,6 +45,7 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install dependencies with Poetry
         run: |
@@ -60,10 +61,10 @@ jobs:
             ${{ runner.os }}-poetry-
 
       - name: Run migrations
-        run: python manage.py migrate
+        run: poetry run python manage.py migrate
 
       - name: Run tests
-        run: python manage.py test
+        run: poetry run python manage.py test
 
   build:
     runs-on: ubuntu-latest
