@@ -67,23 +67,14 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry install --no-interaction --no-ansi --no-root
 
+      - name: Set env to use SQLite for tests
+        run: echo "USE_SQLITE=true" >> $GITHUB_ENV
+
       - name: Run migrations
-        env:
-          NAME: library_project
-          USER: postgres
-          PASSWORD: postgres
-          HOST: localhost
-          PORT: 5432
         run: |
           poetry run python manage.py migrate
 
       - name: Run tests
-        env:
-          NAME: library_project
-          USER: postgres
-          PASSWORD: postgres
-          HOST: localhost
-          PORT: 5432
         run: |
           poetry run python manage.py test
 
