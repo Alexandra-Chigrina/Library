@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies with Poetry
         run: |
           poetry config virtualenvs.in-project true
-          poetry install --no-interaction --no-ansi
+          poetry install --no-interaction --no-ansi --no-root
 
       - name: Run flake8 with Poetry
         run: |
@@ -45,6 +45,11 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install dependencies with Poetry
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry install --no-interaction --no-ansi --no-root
 
       - name: Cache Poetry
         uses: actions/cache@v3
