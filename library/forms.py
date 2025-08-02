@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author
-        fields = ['first_name', 'last_name', 'birth_date',]
+        fields = ['first_name', 'last_name', 'birth_date', ]
 
     def __init__(self, *args, **kwargs):
         super(AuthorForm, self).__init__(*args, **kwargs)
@@ -27,10 +27,11 @@ class AuthorForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'publication_date', 'author',]
+        fields = ['title', 'publication_date', 'author', ]
 
     def __init__(self, *args, **kwargs):
         super(BookForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите название книги'})
-        self.fields['publication_date'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите дату публикации'})
+        self.fields['publication_date'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Введите дату публикации'})
         self.fields['author'].widget.attrs.update({'class': 'form-control'})

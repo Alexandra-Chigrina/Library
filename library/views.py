@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from .models import Book, Author
 from .forms import BookForm, AuthorForm
 from .services import BookService
@@ -77,12 +77,14 @@ class BookListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         queryset = super().get_queryset()
         return queryset.filter(publication_date__year__gt=2000)
 
+
 class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Book
     form_class = BookForm
     template_name = 'library/book_form.html'
     success_url = reverse_lazy('library:books_list')
     permission_required = 'library.add_book'
+
 
 @method_decorator(cache_page(60 * 15), name='dispatch')
 class BookDetailView(LoginRequiredMixin, DetailView):
@@ -101,12 +103,14 @@ class BookDetailView(LoginRequiredMixin, DetailView):
 
         return context
 
+
 class BookUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Book
     form_class = BookForm
     template_name = 'library/book_form.html'
     success_url = reverse_lazy('library:books_list')
     permission_required = 'library.change_book'
+
 
 class BookDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Book

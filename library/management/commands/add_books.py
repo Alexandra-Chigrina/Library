@@ -19,4 +19,3 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'Successfully added book: {book.title}'))
             else:
                 self.stdout.write(self.style.WARNING(f'Book already exists: {book.title}'))
-
